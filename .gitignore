@@ -1,0 +1,10 @@
+node_modules/
+build/
+*.log
+__pycache__/
+*.pyc
+workspace-output/
+generated-project/
+generated-project-runs/
+pipeline-output/
+*.zip

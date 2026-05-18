@@ -1,0 +1,21 @@
+{
+  "name": "stm32-autoforge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-powered STM32 project generation, build, flash, and verification pipeline.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "start": "tsx src/cli.ts",
+    "plan": "tsx src/cli.ts plan",
+    "intake": "tsx src/cli.ts intake"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

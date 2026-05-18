@@ -1,0 +1,23 @@
+{
+  "project_name": "uart_led_runtime_check",
+  "board": "ALIENTEK_STM32F103_Elite_V2",
+  "mcu": "STM32F103ZET6",
+  "build": {
+    "tool": "keil_uv4",
+    "uv4_path": "C:/Keil_v5/UV4/UV4.exe",
+    "project_path": "D:/sofrware project/key_uart_ok/MDK-ARM/key_uart_ok.uvprojx",
+    "target_name": "Target 1"
+  },
+  "flash": {
+    "tool": "keil_uv4",
+    "use_keil_download": true,
+    "project_path": "D:/sofrware project/key_uart_ok/MDK-ARM/key_uart_ok.uvprojx",
+    "target_name": "Target 1"
+  },
+  "verify_runtime": {
+    "method": "uart",
+    "port": "COM10",
+    "baudrate": 115200,
+    "expect_text": "OK"
+  }
+}

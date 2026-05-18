@@ -1,0 +1,39 @@
+{
+  "task_name": "uart_led_runtime_check",
+  "description": "Configure USART1 at 115200 baud and blink PC13 every 500 ms. Runtime output should contain OK.",
+  "board": "ALIENTEK_STM32F103_Elite_V2",
+  "mcu": "STM32F103ZET6",
+  "toolchain": {
+    "type": "keil_uv4",
+    "uv4_path": "D:/Keil_v5/UV4/UV4.exe",
+    "project_path": "D:/sofrware project/key_uart_ok/MDK-ARM/key_uart_ok.uvprojx",
+    "target_name": "Target 1"
+  },
+  "required_modules": [
+    {
+      "name": "uart",
+      "instance": "USART1",
+      "tx_pin": "PA9",
+      "rx_pin": "PA10",
+      "baud_rate": 115200,
+      "format": "8N1",
+      "runtime_output": "OK"
+    },
+    {
+      "name": "gpio_led",
+      "pin": "PC13",
+      "period_ms": 500
+    }
+  ],
+  "reference_files": [
+    "D:/sofrware project/key_uart_ok/MDK-ARM/key_uart_ok.uvprojx"
+  ],
+  "runtime_verify": {
+    "serial_port": "COM10",
+    "baud_rate": 115200,
+    "timeout_s": 10,
+    "expect_keywords": [
+      "OK"
+    ]
+  }
+}
