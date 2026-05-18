@@ -2,6 +2,10 @@
 
 AI-powered STM32 project generation, build, flash, and verification pipeline.
 
+Current baseline version: `v0`.
+
+当前基线版本：`v0`。
+
 STM32 AutoForge 是一个面向 STM32 开发流程的自动化工具。目标是把“需求描述 + 必要参考文件”转成 CubeMX 工程、主程序、Keil 编译下载配置，并通过串口或运行结果做验证。
 
 ## Workflow / 工作流程
