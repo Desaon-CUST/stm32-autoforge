@@ -57,6 +57,54 @@ npm run start -- flash-verify --config "D:\sofrware project\AI try\FlashAndVerif
 - `gui/stm32_task_gui.py`
 - `gui/launch_gui.bat`
 
+## 第一次运行：登录和调用 AI
+
+本工具通过 Codex CLI 调用 AI。第一次运行前，需要先完成 Codex 登录。
+
+```powershell
+codex --help
+codex login
+```
+
+如果系统找不到 `codex`，在 GUI 中勾选 `Show Advanced Paths`，检查 `Codex Path` 是否指向真实的 `codex.cmd`，常见位置：
+
+```text
+C:\Users\<你的用户名>\AppData\Roaming\npm\codex.cmd
+```
+
+登录成功后，在 GUI 中可以这样调用 AI：
+
+- `Send To ChatGPT`：只发送当前任务 Prompt，生成 `ai_plan_result.json`。
+- `Run All`：自动调用 AI，并继续执行 CubeMX 生成、代码写入、Keil 配置、编译烧录和验证。
+
+GUI 内部调用 AI 的方式等价于：
+
+```powershell
+codex exec -C <workspace> --skip-git-repo-check -s read-only -m <model> -o <ai_plan_result.json> -
+```
+
+如果 AI 步骤失败，优先检查 `codex login`、`Codex Path`、网络连接、`Model` 是否可用，以及 GUI 的 `Log` 输出。
+
+## AI 后端说明
+
+当前版本默认 AI 后端是 Codex CLI / OpenAI 模型。
+
+目前 UI 的调用链路是：
+
+```text
+GUI -> codex exec -> ai_plan_result.json -> 后续 STM32 工程生成流程
+```
+
+因此，OpenAI/Codex 体系内的模型通常只需要修改 GUI 里的 `Model` 字段。
+
+Gemini、Claude、本地大模型等其他模型不能直接复用 `codex exec`，需要新增 AI Provider 适配器。适配器的目标很简单：不管后端是什么模型，最终都生成同样格式的文件：
+
+```text
+ai_plan_result.json
+```
+
+只要 `ai_plan_result.json` 的结构保持一致，后续的 CubeMX 生成、主程序写入、Keil 配置、编译烧录和验证流程都可以继续复用。
+
 GUI 用法：
 
 1. 打开 `gui/launch_gui.bat`。
